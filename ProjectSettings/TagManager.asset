@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Row0
+    uniqueID: 3891692687
+    locked: 0
+  - name: Row1
+    uniqueID: 1235696965
+    locked: 0
+  - name: Row2
+    uniqueID: 1208404217
+    locked: 0
+  - name: Row3
+    uniqueID: 1300670461
+    locked: 0
+  - name: Discard
+    uniqueID: 553627317
+    locked: 0
+  - name: Draw
+    uniqueID: 1329605397
+    locked: 0
