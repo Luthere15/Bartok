@@ -148,6 +148,10 @@ public class Bartok : MonoBehaviour
         if(CURRENT_PLAYER != null)
         {
             lastPlayerNum = CURRENT_PLAYER.playerNum;
+            if (CheckGameOver())
+            {
+                return;
+            }
         }
         CURRENT_PLAYER = Players[num];
         phase = TurnPhase.pre;
@@ -155,6 +159,30 @@ public class Bartok : MonoBehaviour
         CURRENT_PLAYER.TakeTurn();
 
         Utils.tr("Bartok:PassTurn()", "Old:" + lastPlayerNum, "New:" + CURRENT_PLAYER.playerNum);
+    }
+
+    public bool CheckGameover()
+    {
+        if (drawPile.Count == 0)
+        {
+            List<Card> cards = new List<Card>();
+            foreach(CardBartok cb in discardPile)
+            {
+                cards.Add(cb);
+            }
+            discardPile.Clear();
+            Deck.Shuffle(ref cards);
+            drawPile = UpgradeCardsList(cards);
+            ArrangeDrawPile();
+
+        }
+
+        if( CURRENT_PLAYER.hand.Count == 0)
+        {
+            phase = TurnPhase.gameOver;
+            Invoke("RestartGame", 1);
+            return (true);
+        }
     }
 
     public bool ValidPlay(CardBartok cb)
@@ -168,6 +196,11 @@ public class Bartok : MonoBehaviour
         return (false);
     }
 
+    public void RestartGame()
+    {
+        CURRENT_PLAYER = null;
+        SceneManager.LoadScene("_Bartok_Scene_0");
+    }
 
     public CardBartok MoveToTarget(CardBartok tCB)
     {
@@ -201,10 +234,64 @@ public class Bartok : MonoBehaviour
     public CardBartok Draw()
     {
         CardBartok cd = drawPile[0];
+
+        if(drawPile.Count == 0)
+        {
+            int ndx;
+            while (discardPile.Count > 0)
+            {
+                ndx = Random.Range(0, discardPile.Count);
+                drawPile.Add(discardPile[ndx]);
+                discardPile.RemoveAt(ndx);
+            }
+            ArrangeDrawPile();
+
+            float t = Time.time;
+            foreach(CardBartok tCB in drawPile)
+            {
+                tCB.transform.localPosition = layout.discardPile.pos;
+                tCB.callbackPlayer = null;
+                tCB.MoveTo(layout.drawPile.pos);
+                tCB.timeStart = t;
+                t += 0.02f;
+                tCB.state = CBState.toDrawpile;
+                tCB.eventualSortLayer = "0";
+            }
+        }
         drawPile.RemoveAt(0);
         return (cd);
     }
 
+    public  void CardClicked(CardBartok tCB)
+    {
+        if (CURRENT_PLAYER.type != PlayerType.human) return;
+        if (phase == TurnPhase.waiting) return;
+
+        switch (tCB.state)
+        {
+            case CBState.drawpile:
+                CardBartok cb = CURRENT_PLAYER.AddCard(Draw());
+                cb.callbackPlayer = CURRENT_PLAYER;
+                Utils.tr("Bartok: CardClicked()", "Draw", cb.name);
+                phase = TurnPhase.waiting;
+                break;
+
+            case CBState.hand:
+                if (ValidPlay(tCB))
+                {
+                    CURRENT_PLAYER.RemoveCard(tCB);
+                    MoveToTarget(tCB);
+                    tCB.callbackPlayer = CURRENT_PLAYER;
+                    Utils.tr("Bartok:CardClicked()", "Play", tCB.name, targetCard.name + "is target");
+                    phase = TurnPhase.waiting;
+                }
+                else
+                {
+                    Utils.tr("Bartok:CardClicked()", "Attempted to Play", tCB.name, targetCard.name + "is target");
+                }
+                break;
+        }
+    }
   /*  void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
