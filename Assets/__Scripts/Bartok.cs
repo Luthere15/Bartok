@@ -298,20 +298,20 @@ public class Bartok : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Players[0].AddCard(Draw());
+            players[0].AddCard(Draw());
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Players[1].AddCard(Draw());
+            players[1].AddCard(Draw());
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Players[2].AddCard(Draw());
+            players[2].AddCard(Draw());
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Players[3].AddCard(Draw());
+            players[3].AddCard(Draw());
         }
-    }*/
 
+    }*/
 }

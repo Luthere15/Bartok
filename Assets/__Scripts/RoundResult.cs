@@ -18,7 +18,8 @@ public class RoundResult : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Bartok.S.phase != TurnPhase.gameover){
+		if(Bartok.S.phase != TurnPhase.gameover)
+        {
             txt.text = "";
             return;
         }

@@ -8,7 +8,7 @@ public enum PlayerType
     human,
     ai,
 }
-//[System.Serializable]
+[System.Serializable]
 public class Player
 {
     public PlayerType type = PlayerType.ai;
