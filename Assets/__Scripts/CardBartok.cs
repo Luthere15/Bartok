@@ -32,7 +32,7 @@ public class CardBartok : Card
     public string eventualSortLayer;
 
     public GameObject reportFinishTo = null;
-    //[System.NonSerialized]
+    [System.NonSerialized]
     public Player callbackPlayer = null;
 
     public void MoveTo(Vector3 ePos, Quaternion eRot)

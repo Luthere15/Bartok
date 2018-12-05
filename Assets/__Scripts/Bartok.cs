@@ -9,7 +9,7 @@ public enum TurnPhase
     pre,
     waiting,
     post,
-    gameOver
+    gameover
 }
 
 public class Bartok : MonoBehaviour
@@ -179,7 +179,7 @@ public class Bartok : MonoBehaviour
 
         if( CURRENT_PLAYER.hand.Count == 0)
         {
-            phase = TurnPhase.gameOver;
+            phase = TurnPhase.gameover;
             Invoke("RestartGame", 1);
             return (true);
         }

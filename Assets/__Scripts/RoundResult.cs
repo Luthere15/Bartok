@@ -9,7 +9,7 @@ public class RoundResult : MonoBehaviour {
     void Awake()
     {
         txt = GetComponent<Text>();
-        txt.txt = "";
+        txt.text = "";
     }
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,7 @@ public class RoundResult : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Bartok.S.phase != TurnPhase.gameOver){
+		if(Bartok.S.phase != TurnPhase.gameover){
             txt.text = "";
             return;
         }
