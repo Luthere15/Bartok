@@ -683,7 +683,7 @@ MonoBehaviour:
   drawPile:
     x: 0
     y: 0
-    faceUp: 1
+    faceUp: 0
     layerName: Default
     layerID: 0
     id: 0
