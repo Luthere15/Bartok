@@ -141,7 +141,7 @@ public class Bartok : MonoBehaviour
     {
         if (num == -1)
         {
-            int ndx = players.Indexof(CURRENT_PLAYER);
+            int ndx = players.IndexOf(CURRENT_PLAYER);
             num = (ndx + 1) % 4;
         }
         int lastPlayerNum = -1;
@@ -161,7 +161,7 @@ public class Bartok : MonoBehaviour
         Utils.tr("Bartok:PassTurn()", "Old:" + lastPlayerNum, "New:" + CURRENT_PLAYER.playerNum);
     }
 
-    public bool CheckGameover()
+    public bool CheckGameOver()
     {
         if (drawPile.Count == 0)
         {
@@ -183,6 +183,8 @@ public class Bartok : MonoBehaviour
             Invoke("RestartGame", 1);
             return (true);
         }
+
+        return (false);
     }
 
     public bool ValidPlay(CardBartok cb)

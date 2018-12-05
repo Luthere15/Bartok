@@ -12,7 +12,7 @@ public enum PlayerType
 public class Player
 {
     public PlayerType type = PlayerType.ai;
-    public int playerName;
+    public int playerNum;
     public SlotDef handSlotDef;
     public List<CardBartok> hand;
     public CardBartok AddCard(CardBartok eCB)
@@ -42,7 +42,7 @@ public class Player
         FanHand();
         return (cb);
     }
-    public void Fanhand()
+    public void FanHand()
     {
         float startRot = 0;
         startRot = handSlotDef.rot;
@@ -80,7 +80,7 @@ public class Player
 
             hand[i].faceUp = (type == PlayerType.human);
 
-            hand[i].eventualSortorder = i * 4;
+            hand[i].eventualSortOrder = i * 4;
             //hand[i].SetSortOrder(i * 4);
         }
     }
@@ -94,7 +94,7 @@ public class Player
 
         CardBartok cb;
 
-        List<CardBartok> vaildCards = new List<CardBartok>();
+        List<CardBartok> validCards = new List<CardBartok>();
         foreach(CardBartok tCB in hand)
         {
             if (Bartok.S.ValidPlay(tCB))
@@ -109,7 +109,7 @@ public class Player
             return;
         }
 
-        cb = validCards[Random.Range(0, vaildCards.Count)];
+        cb = validCards[Random.Range(0, validCards.Count)];
         RemoveCard(cb);
         Bartok.S.MoveToTarget(cb);
         cb.callbackPlayer = this;
