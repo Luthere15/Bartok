@@ -8,7 +8,7 @@ public enum PlayerType
     human,
     ai,
 }
-[System.Serializable]
+//[System.Serializable]
 public class Player
 {
     public PlayerType type = PlayerType.ai;
@@ -48,7 +48,7 @@ public class Player
         startRot = handSlotDef.rot;
         if (hand.Count > 1)
         {
-            startRot += Bartok.S.handFandegrees * (hand.Count - 1) / 2;
+            startRot += Bartok.S.handFanDegrees * (hand.Count - 1) / 2;
         }
 
         Vector3 pos;
@@ -122,15 +122,3 @@ public class Player
     }
 }
 
-public class Player : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-}

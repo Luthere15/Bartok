@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SlotDef
+/*[System.Serializable]
+public class SlotDef 
 {
         public float x;
         public float y;
@@ -90,4 +90,4 @@ public class Layout : MonoBehaviour
     }
 
 	
-}
+}*/

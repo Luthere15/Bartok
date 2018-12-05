@@ -29,7 +29,7 @@ public class Bartok : MonoBehaviour
     public Deck deck;
     public List<CardBartok> drawPile;
     public List<CardBartok> discardPile;
-    public List<Player> Players;
+    public List<Player> players;
     public CardBartok targetCard;
     public TurnPhase phase = TurnPhase.idle;
 
@@ -93,16 +93,16 @@ public class Bartok : MonoBehaviour
 
         ArrangeDrawPile();
 
-        PlayerPrefs p1;
+        Player p1;
         players = new List<Player>();
         foreach(SlotDef tSD in layout.slotDefs)
         {
             p1 = new Player();
             p1.handSlotDef = tSD;
-            Players.Add(p1);
+            players.Add(p1);
             p1.playerNum = tSD.player;
         }
-        Players[0].type = PlayerType.human;
+        players[0].type = PlayerType.human;
 
         CardBartok tCB;
         for(int i=0; i<numStartingCards; i++)
@@ -112,7 +112,7 @@ public class Bartok : MonoBehaviour
                 tCB = Draw();
                 tCB.timeStart = Time.time + drawTimesStagger * (i * 4 + j);
 
-                Players[(j + 1) % 4].AddCard(tCB);
+                players[(j + 1) % 4].AddCard(tCB);
             }
         }
 
@@ -153,7 +153,7 @@ public class Bartok : MonoBehaviour
                 return;
             }
         }
-        CURRENT_PLAYER = Players[num];
+        CURRENT_PLAYER = players[num];
         phase = TurnPhase.pre;
 
         CURRENT_PLAYER.TakeTurn();

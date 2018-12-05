@@ -32,7 +32,7 @@ public class CardBartok : Card
     public string eventualSortLayer;
 
     public GameObject reportFinishTo = null;
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public Player callbackPlayer = null;
 
     public void MoveTo(Vector3 ePos, Quaternion eRot)
@@ -40,6 +40,10 @@ public class CardBartok : Card
         bezierPts = new List<Vector3>();
         bezierPts.Add(transform.localPosition);
         bezierPts.Add(ePos);
+
+        bezierRots = new List<Quaternion>();
+        bezierRots.Add(transform.rotation);
+        bezierRots.Add(eRot);
 
         if (timeStart == 0)
         {
