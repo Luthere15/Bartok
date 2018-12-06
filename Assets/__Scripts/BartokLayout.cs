@@ -57,7 +57,7 @@ public class BartokLayout : MonoBehaviour
             }
 
             tSD.x = float.Parse(slotsX[i].att("x"));
-            tSD.x = float.Parse(slotsX[i].att("y"));
+            tSD.y = float.Parse(slotsX[i].att("y"));
             tSD.pos = new Vector3(tSD.x * multiplier.x, tSD.y * multiplier.y, 0);
 
             tSD.layerID = int.Parse(slotsX[i].att("layer"));
